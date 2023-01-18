@@ -1,5 +1,5 @@
 module EBNF where
---EBNF should follow ISO/IEC 14977
+--should use EBNF as defined in https://www.w3.org/TR/REC-xml/#sec-notation
 
 data EBNF = [Rule]
 
