@@ -3,9 +3,19 @@ module EBNF where
 
 data EBNF = [Rule]
 
-data Rule = Terminal Identifier [Symbol] 
-          | NonTerminal Identifier [Rule]
+data Rule = Symbol Identifier [Literal] 
+          | Expression Identifier [Production]
+data Production
+          = Optional Rule
+          | AND Rule RUle
+          | OR Rule Rule
+          | Diff Rule Rule
+          | Plus Rule
+          | Star Rule
+          | Any [Symbol]
 
 
-newtype Symbol = Symbol String 
+newtype Literal = Literal String 
 type Identifier = String
+
+data 
