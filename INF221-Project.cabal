@@ -1,0 +1,57 @@
+cabal-version:      2.4
+name:               INF221
+version:            0.1.0.0
+synopsis:
+    A haskell library that can generate a parser and parsetree for a given grammar
+
+-- A longer description of the package.
+-- description:
+homepage:           https://github.com/Swi005/INF221-Project
+
+-- A URL where users can report bugs.
+-- bug-reports:
+license:            NONE
+author:             Sander Wiig
+maintainer:         Sander.wiig@uib.no
+
+-- A copyright notice.
+-- copyright:
+category:           Language
+extra-source-files: CHANGELOG.md
+
+library
+    exposed-modules:
+        Generator.GenTree
+        EBNF.Lexer
+        EBNF.EBNF
+        EBNF.Parser
+
+    -- Modules included in this library but not exported.
+    other-modules:       
+        Paths_INF221
+    other-extensions: OverloadedStrings
+    hs-source-dirs:   src
+    default-language: Haskell2010
+    build-depends:
+        base ^>=4.16.4.0,
+        text ^>=1.2.5.0,
+        megaparsec,
+        pretty-simple,
+        parser-combinators,
+        text-format-simple,
+        free
+
+test-suite INF221-test
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          ParserTest.hs
+    default-language: Haskell2010
+    build-depends:
+        base ^>=4.16.4.0,
+        text ^>=1.2.5.0,
+        megaparsec,
+        pretty-simple,
+        parser-combinators,
+        text-format-simple,
+        INF221,
+        free

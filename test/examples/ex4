@@ -1,0 +1,4 @@
+ex1 = "a" | "b";
+ex2 = "a"+;
+ex3 = ["hello" "world"] | "hello" | "world";
+ex4 = ex1 | ex2 | ex3;
