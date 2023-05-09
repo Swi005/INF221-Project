@@ -52,6 +52,5 @@ test-suite INF221-test
         megaparsec,
         pretty-simple,
         parser-combinators,
-        text-format-simple,
         INF221,
         free

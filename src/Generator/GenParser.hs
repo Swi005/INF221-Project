@@ -5,7 +5,6 @@ import Generator.GenUtils
 
 import EBNF.EBNF as G
 import Text.Megaparsec (parse)
-import Text.Format
 
 -- | Generates a parser from an EBNF grammar
 generate :: EBNF -> String
@@ -23,11 +22,9 @@ vars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r',
 -- | Parses a rule from an EBNF grammar
 generateRule :: Rule -> String
 generateRule (G.Symbol id expr ) = 
-    format "parse_{0} :: Parser (ParseTree String)  \n" [id] ++
-    format "parse_{0} = do \n" [id] ++
-    tab 1 ++ "a <- " ++ generateExpr expr ++ 
-    nl ++
-    tab 1 ++ format "return (Symbol \"{0}\" [a])" [id]++
+    "parse_"++id++" :: Parser (ParseTree String)  \n" ++
+    "parse_"++id++" =  " ++ 
+    "return (Symbol \""++ id++ "\" [" ++ generateExpr expr ++ "])"++
     nl ++
     nl
 
