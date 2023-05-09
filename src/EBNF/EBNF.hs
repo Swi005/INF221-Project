@@ -3,7 +3,7 @@ module EBNF.EBNF where
 
 newtype EBNF = Grammar [Rule] deriving (Show,Eq)
 
- 
+
 --Statements
 data Rule = Symbol Identifier Expression
             deriving (Show,Eq)
