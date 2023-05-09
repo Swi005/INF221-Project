@@ -6,8 +6,6 @@ module Generator.GenUtils(
     importTemplate'
     ) where
 
-import Text.Format
-
 -- | Function that generates n amount of tabs
 -- 
 tab :: Int-> String
@@ -42,7 +40,7 @@ importTemplate' :: String
 importTemplate' = importTemplate [
                     "Data.Void",
                     "Data.Text",
-                    "Control.Monad (void)",
+                    "Control.Monad (void,liftM2)",
                     "Control.Monad.Combinators.Expr",
                     "Control.Applicative hiding (many, some)",
                     "Text.Megaparsec",

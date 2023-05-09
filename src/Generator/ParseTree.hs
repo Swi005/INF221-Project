@@ -5,7 +5,6 @@ import Control.Monad
 
 import Data.Text
 
-import Text.Format
 import Generator.GenUtils
 
 
