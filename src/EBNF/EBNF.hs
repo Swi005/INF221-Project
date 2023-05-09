@@ -10,7 +10,7 @@ data Rule = Symbol Identifier Expression
 
 --Exprs
 data Expression
-          = Sequence [Expression] 
+          = Sequence [Expression]
           | Optional Expression -- ( ? )
           | Or Expression Expression -- |
           | Plus Expression -- +

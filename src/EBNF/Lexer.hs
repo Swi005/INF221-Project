@@ -37,4 +37,4 @@ charLiteral :: Parser Char
 charLiteral = between (char '\'') (char '\'') L.charLiteral
 
 stringLiteral :: Parser String
-stringLiteral = char '\"' *> manyTill L.charLiteral (char '\"')
+stringLiteral = char '\"' *> manyTill L.charLiteral (char '\"') <|> char '\'' *> manyTill L.charLiteral (char '\'')

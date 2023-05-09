@@ -47,5 +47,7 @@ importTemplate' = importTemplate [
                     "Control.Applicative hiding (many, some)",
                     "Text.Megaparsec",
                     "Text.Megaparsec.Char ",
-                    "Text.Megaparsec.Error"
+                    "Text.Megaparsec.Error",
+                    "Generator.ParseTree",
+                    "EBNF.Lexer(symbol, lexeme)"
                 ]

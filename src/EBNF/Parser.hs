@@ -6,7 +6,7 @@ import System.IO
 import Data.Void
 import Data.Text
 
-import Control.Monad (void)
+import Control.Monad (void,liftM2)
 import Control.Monad.Combinators.Expr
 import Control.Applicative hiding (many, some)
 
@@ -39,10 +39,14 @@ symbol' = try(do
     )
 
 expr' :: Parser Expression 
-expr' = makeExprParser terms operatorTable <?> "expression"
+expr' =  makeExprParser terms operatorTable <?> "expression"
 
 
-terms = choice [parens', sequence', terminal, symbolRef'] <?> "term"
+terms = choice [parens', sequence',terminal, symbolRef'] <?> "term"
+
+expr'' :: Parser Expression 
+expr'' = makeExprParser terms' operatorTable <?> "expression"
+terms' = choice [parens', terminal, symbolRef'] <?> "term"
 
 
 operatorTable :: [[Operator Parser Expression]]
@@ -64,7 +68,8 @@ parens' = try $ between (symbol "(") (symbol ")") expr'
 sequence' :: Parser Expression
 sequence' = try (do
             sc
-            rs <- between (symbol "[") (symbol "]") (some expr')
+            --rs <- between (symbol "[") (symbol "]") (some expr')
+            rs <- some2 expr''
             sc
             return (Sequence rs)
     )
@@ -99,3 +104,5 @@ binary  name f = InfixL  (f <$ symbol name)
 prefix, postfix :: Text -> (Expression -> Expression) -> Operator Parser Expression
 prefix  name f = Prefix  (f <$ symbol name)
 postfix name f = Postfix (f <$ symbol name)
+
+some2 p = liftM2 (:) p (some p)

@@ -13,6 +13,7 @@ import Generator.GenParser ( generate )
 
 main :: IO ()
 main = runAllTests
+out = "test/out/"
 
 testList = [1 .. 5]
 
@@ -20,10 +21,11 @@ test f = do
         input <- readFile $ "test/examples/" ++ f
         --print input
         case parse ebnf f $ pack input of
-                Left e -> print e
-                Right r -> print $ generate r
+                Left e -> error $ show e
+                Right r ->writeFile ("output.hs" ) $ generate r
         --pPrint $ parse ebnf "foo" $ pack input
         --parseTest ebnf $ pack input
+
 
 runAllTests = mapM_ (\t -> do  
             file <- ((readFile ("test/examples/ex" ++ show t)) >>= (return . pack))
