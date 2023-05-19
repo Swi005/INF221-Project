@@ -1,9 +1,9 @@
 /dist-newstyle/
 /.vscode/
-src/output.hs
-.aux
-.fdb_latexmk
-.fls
-.log
-.synctex.gz
-.toc
+output.hs
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.toc
