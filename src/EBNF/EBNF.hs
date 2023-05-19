@@ -24,3 +24,11 @@ data Expression
 
 
 type Identifier = String
+
+-- | Make EBNF into a functor
+instance Functor EBNF where
+    fmap f (Grammar rules) = Grammar (fmap f rules)
+
+-- | Make Rule into  a functor
+instance Functor Rule where
+    fmap f (Symbol id expr) = Symbol id (fmap f expr)
