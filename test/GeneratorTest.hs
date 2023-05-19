@@ -9,7 +9,7 @@ import Text.Megaparsec
 import Text.Megaparsec.Error
 
 import EBNF.Parser
-import Generator.GenParser ( generate )
+import Generator.GenParser ( generate, generate' )
 
 main :: IO ()
 main = runAllTests
@@ -22,7 +22,7 @@ test f = do
         --print input
         case parse ebnf f $ pack input of
                 Left e -> error $ show e
-                Right r ->writeFile ("output.hs" ) $ generate r
+                Right r ->writeFile ("output.hs" ) $ generate' r
         --pPrint $ parse ebnf "foo" $ pack input
         --parseTest ebnf $ pack input
 

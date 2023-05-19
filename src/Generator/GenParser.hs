@@ -1,14 +1,19 @@
-module Generator.GenParser(generate) where
+module Generator.GenParser(generate, generate') where
 
 import Generator.ParseTree
 import Generator.GenUtils
 
 import EBNF.EBNF as G
+import EBNF.Parser
+import EBNF.CheckGrammar
 import Text.Megaparsec (parse)
 
 -- | Generates a parser from an EBNF grammar
-generate :: EBNF -> String
-generate (Grammar rules ) = header "Parser" ++ importTemplate' ++ nl ++ parseDef ++nl ++ nl ++ helperFuncs ++ nl ++ nl ++ concatMap generateRule rules
+generate :: String -> String
+generate s = generate' $ checkGrammar $ ebnf s
+
+generate' :: EBNF -> String
+generate' (Grammar rules ) = header "Parser" ++ importTemplate' ++ nl ++ parseDef ++nl ++ nl ++ helperFuncs ++ nl ++ nl ++ concatMap generateRule rules
 
 -- | Functions that are helpful for parsing
 helperFuncs :: String
