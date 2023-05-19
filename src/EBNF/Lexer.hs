@@ -38,3 +38,9 @@ charLiteral = between (char '\'') (char '\'') L.charLiteral
 
 stringLiteral :: Parser String
 stringLiteral = char '\"' *> manyTill L.charLiteral (char '\"') <|> char '\'' *> manyTill L.charLiteral (char '\'')
+
+integer :: Parser Integer
+integer = lexeme L.decimal
+
+charClass :: Parser [Char]
+charClass = between (char '[') (char ']') (manyTill L.charLiteral (char ']'))
