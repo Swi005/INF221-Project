@@ -20,7 +20,7 @@ testList = [1 .. 5]
 test f = do 
         input <- readFile $ "test/examples/" ++ f
         --print input
-        case parse ebnf f $ pack input of
+        case parse ebnf f input of
                 Left e -> error $ show e
                 Right r ->writeFile ("output.hs" ) $ generate' r
         --pPrint $ parse ebnf "foo" $ pack input

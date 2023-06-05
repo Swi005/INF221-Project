@@ -16,7 +16,7 @@ import Text.Megaparsec.Error
 import qualified Text.Megaparsec.Char.Lexer as L
 
 
-type Parser = Parsec Void Text
+type Parser = Parsec Void String
 
 -- | sc(space consumer) consumes spaces
 --
@@ -30,7 +30,7 @@ lexeme = L.lexeme sc
 
 -- | Wrapper that consumes spaces after a symbol
 --
-symbol :: Text -> Parser Text
+symbol :: String -> Parser String
 symbol = L.symbol sc
 
 charLiteral :: Parser Char

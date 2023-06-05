@@ -3,14 +3,20 @@ module Generator.GenParser(generate, generate') where
 import Generator.ParseTree
 import Generator.GenUtils
 
+import Data.Text(pack)
+
 import EBNF.EBNF as G
 import EBNF.Parser
 import EBNF.CheckGrammar
-import Text.Megaparsec (parse)
+import Text.Megaparsec (parse, runParser)
 
 -- | Generates a parser from an EBNF grammar
 generate :: String -> String
-generate s = generate' $ checkGrammar $ ebnf s
+generate s = let g = runParser ebnf "" s 
+                 t = case g of
+                    Left e -> error $ show e
+                    Right g' -> checkGrammar g' 
+             in generate' t
 
 generate' :: EBNF -> String
 generate' (Grammar rules ) = header "Parser" ++ importTemplate' ++ nl ++ parseDef ++nl ++ nl ++ helperFuncs ++ nl ++ nl ++ concatMap generateRule rules

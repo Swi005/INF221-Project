@@ -20,7 +20,7 @@ import EBNF.EBNF as AST
 
 -- | Parser a EBNF grammar and returns a EBNF 
 --
-parseFromFile file = runParser ebnf file <$> ((readFile file) >>= (return . pack))
+parseFromFile file = runParser ebnf file <$> ((readFile file) >>= (return))
 
 ebnf :: Parser EBNF
 ebnf = do
@@ -98,10 +98,10 @@ identifier = try(do
         )
 
 
-binary :: Text -> (Expression -> Expression -> Expression) -> Operator Parser Expression
+binary :: String -> (Expression -> Expression -> Expression) -> Operator Parser Expression
 binary  name f = InfixL  (f <$ symbol name)
 
-prefix, postfix :: Text -> (Expression -> Expression) -> Operator Parser Expression
+prefix, postfix :: String -> (Expression -> Expression) -> Operator Parser Expression
 prefix  name f = Prefix  (f <$ symbol name)
 postfix name f = Postfix (f <$ symbol name)
 

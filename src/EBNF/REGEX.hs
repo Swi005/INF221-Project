@@ -31,7 +31,6 @@ import Text.Megaparsec.Error
 import Text.Pretty.Simple
 
 import EBNF.Lexer as Lexer
-import EBNF.EBNF as AST
 import qualified EBNF.Lexer as Lexer
 
 type Parser = Parsec Void Text

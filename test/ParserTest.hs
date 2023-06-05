@@ -20,10 +20,10 @@ test f = do
         input <- readFile $ "test/examples/" ++ f
         --print input
         --pPrint $ parse ebnf "foo" $ pack input
-        parseTest ebnf $ pack input
+        parseTest ebnf input
 
 runAllTests = mapM_ (\t -> do  
-            file <- ((readFile ("test/examples/ex" ++ show t)) >>= (return . pack))
+            file <- ((readFile ("test/examples/ex" ++ show t)) >>= (return))
             case runParser ebnf (show t) file of
                 Left s -> print s
                 Right _ -> return ()
